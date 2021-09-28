@@ -1,0 +1,15 @@
+{% extends 'commentapp/index.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 centered">
+            {% for posts in posts.all %}
+            <p>제목: <a href="{% url 'detail' posts.id %}">{{ posts.title }}</a></p>
+            <p>작성자: {{ posts.writer }}</p>
+            <p>작성 일지 및 시간: {{ posts.pub_date }}</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'commentapp/index.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 centered">
+            <h2>제목: {{ post.title }}</h2>
+            <hr class="divider" />
+            <p>작성 일자 및 시간: {{ post.pub_date }}</p>
+            <p>글쓴이: {{ post.writer }}</p>
+            <p>내용: {{ post.body }}</p>
+            <hr>
+            {% for comment in post.comments.all %}
+                <p>{{ comment.text }} : {{ comment.created_at }}</p>
+            {% endfor %}
+            <form method="POST" action="{% url 'detail' post.id %}">
+                {% csrf_token %}
+                <p>{{ form.as_p }}</p>
+                <input type="submit" value="submit">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
